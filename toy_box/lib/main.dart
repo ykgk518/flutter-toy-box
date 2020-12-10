@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:toy_box/top.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      ProviderScope(
+        child: MyApp(),
+      ),
+    );
+final helloWorldProvider = Provider((_) => 'Hello world');
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appTitle = 'Form Validation Demo';
+    final appTitle = 'ログイン画面';
 
     return MaterialApp(
       title: appTitle,
@@ -15,6 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         body: MyCustomForm(),
       ),
+      routes: {
+        '/top': (context) => TopPage(),
+      },
     );
   }
 }
@@ -40,27 +50,67 @@ class MyCustomFormState extends State<MyCustomForm> {
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
+    final Size mediaSize = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          TextFormField(
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
+          Center(
+            // Consumer is a widget that allows you reading providers.
+            // You could also use the hook "useProvider" if you uses flutter_hooks
+            child: Consumer(builder: (context, watch, _) {
+              final count = watch(helloWorldProvider);
+              return Text('$count');
+            }),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: mediaSize.width * 0.1,
+              vertical: mediaSize.height * 0.01,
+            ),
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: 'username',
+                hintText: 'ユーザID・メールアドレス',
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: mediaSize.width * 0.1,
+              vertical: mediaSize.height * 0.01,
+            ),
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: 'password',
+                hintText: '',
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+          ),
+          Container(
             child: RaisedButton(
               onPressed: () {
                 // Validate returns true if the form is valid, or false
                 // otherwise.
                 if (_formKey.currentState.validate()) {
                   // If the form is valid, display a Snackbar.
+                  Navigator.pushNamed(
+                    context,
+                    '/top',
+                  );
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Processing Data')));
                 }
