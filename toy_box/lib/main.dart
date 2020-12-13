@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:toy_box/top.dart';
+import 'package:toy_box/ui/page/top.dart';
 
 void main() => runApp(
       ProviderScope(

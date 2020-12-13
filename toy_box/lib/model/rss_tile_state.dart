@@ -8,6 +8,7 @@ abstract class RssTileState implements _$RssTileState {
   factory RssTileState({
     @Default([]) List<RssItem> rssItems,
     @Default(0) int readCount,
+    @Default(true) bool isLoading,
   }) = _RssTileState;
 
   RssTileState._();

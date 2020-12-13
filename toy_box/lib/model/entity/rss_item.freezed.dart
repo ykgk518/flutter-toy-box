@@ -21,12 +21,14 @@ class _$RssItemTearOff {
       {@required int id,
       @required int price,
       @required String title,
-      @required String imageUrl}) {
+      @required String content,
+      @required String imagePath}) {
     return _RssItem(
       id: id,
       price: price,
       title: title,
-      imageUrl: imageUrl,
+      content: content,
+      imagePath: imagePath,
     );
   }
 
@@ -45,7 +47,8 @@ mixin _$RssItem {
   int get id;
   int get price;
   String get title;
-  String get imageUrl;
+  String get content;
+  String get imagePath;
 
   Map<String, dynamic> toJson();
   $RssItemCopyWith<RssItem> get copyWith;
@@ -55,7 +58,8 @@ mixin _$RssItem {
 abstract class $RssItemCopyWith<$Res> {
   factory $RssItemCopyWith(RssItem value, $Res Function(RssItem) then) =
       _$RssItemCopyWithImpl<$Res>;
-  $Res call({int id, int price, String title, String imageUrl});
+  $Res call(
+      {int id, int price, String title, String content, String imagePath});
 }
 
 /// @nodoc
@@ -71,13 +75,15 @@ class _$RssItemCopyWithImpl<$Res> implements $RssItemCopyWith<$Res> {
     Object id = freezed,
     Object price = freezed,
     Object title = freezed,
-    Object imageUrl = freezed,
+    Object content = freezed,
+    Object imagePath = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as int,
       price: price == freezed ? _value.price : price as int,
       title: title == freezed ? _value.title : title as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      content: content == freezed ? _value.content : content as String,
+      imagePath: imagePath == freezed ? _value.imagePath : imagePath as String,
     ));
   }
 }
@@ -87,7 +93,8 @@ abstract class _$RssItemCopyWith<$Res> implements $RssItemCopyWith<$Res> {
   factory _$RssItemCopyWith(_RssItem value, $Res Function(_RssItem) then) =
       __$RssItemCopyWithImpl<$Res>;
   @override
-  $Res call({int id, int price, String title, String imageUrl});
+  $Res call(
+      {int id, int price, String title, String content, String imagePath});
 }
 
 /// @nodoc
@@ -104,13 +111,15 @@ class __$RssItemCopyWithImpl<$Res> extends _$RssItemCopyWithImpl<$Res>
     Object id = freezed,
     Object price = freezed,
     Object title = freezed,
-    Object imageUrl = freezed,
+    Object content = freezed,
+    Object imagePath = freezed,
   }) {
     return _then(_RssItem(
       id: id == freezed ? _value.id : id as int,
       price: price == freezed ? _value.price : price as int,
       title: title == freezed ? _value.title : title as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      content: content == freezed ? _value.content : content as String,
+      imagePath: imagePath == freezed ? _value.imagePath : imagePath as String,
     ));
   }
 }
@@ -123,11 +132,13 @@ class _$_RssItem with DiagnosticableTreeMixin implements _RssItem {
       {@required this.id,
       @required this.price,
       @required this.title,
-      @required this.imageUrl})
+      @required this.content,
+      @required this.imagePath})
       : assert(id != null),
         assert(price != null),
         assert(title != null),
-        assert(imageUrl != null);
+        assert(content != null),
+        assert(imagePath != null);
 
   factory _$_RssItem.fromJson(Map<String, dynamic> json) =>
       _$_$_RssItemFromJson(json);
@@ -139,7 +150,9 @@ class _$_RssItem with DiagnosticableTreeMixin implements _RssItem {
   @override
   final String title;
   @override
-  final String imageUrl;
+  final String content;
+  @override
+  final String imagePath;
 
   bool _didpriceWithUnit = false;
   String _priceWithUnit;
@@ -155,7 +168,7 @@ class _$_RssItem with DiagnosticableTreeMixin implements _RssItem {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RssItem(id: $id, price: $price, title: $title, imageUrl: $imageUrl, priceWithUnit: $priceWithUnit)';
+    return 'RssItem(id: $id, price: $price, title: $title, content: $content, imagePath: $imagePath, priceWithUnit: $priceWithUnit)';
   }
 
   @override
@@ -166,7 +179,8 @@ class _$_RssItem with DiagnosticableTreeMixin implements _RssItem {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('price', price))
       ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('imageUrl', imageUrl))
+      ..add(DiagnosticsProperty('content', content))
+      ..add(DiagnosticsProperty('imagePath', imagePath))
       ..add(DiagnosticsProperty('priceWithUnit', priceWithUnit));
   }
 
@@ -180,9 +194,12 @@ class _$_RssItem with DiagnosticableTreeMixin implements _RssItem {
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.imageUrl, imageUrl) ||
+            (identical(other.content, content) ||
                 const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)));
+                    .equals(other.content, content)) &&
+            (identical(other.imagePath, imagePath) ||
+                const DeepCollectionEquality()
+                    .equals(other.imagePath, imagePath)));
   }
 
   @override
@@ -191,7 +208,8 @@ class _$_RssItem with DiagnosticableTreeMixin implements _RssItem {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(imageUrl);
+      const DeepCollectionEquality().hash(content) ^
+      const DeepCollectionEquality().hash(imagePath);
 
   @override
   _$RssItemCopyWith<_RssItem> get copyWith =>
@@ -208,7 +226,8 @@ abstract class _RssItem implements RssItem {
       {@required int id,
       @required int price,
       @required String title,
-      @required String imageUrl}) = _$_RssItem;
+      @required String content,
+      @required String imagePath}) = _$_RssItem;
 
   factory _RssItem.fromJson(Map<String, dynamic> json) = _$_RssItem.fromJson;
 
@@ -219,7 +238,9 @@ abstract class _RssItem implements RssItem {
   @override
   String get title;
   @override
-  String get imageUrl;
+  String get content;
+  @override
+  String get imagePath;
   @override
   _$RssItemCopyWith<_RssItem> get copyWith;
 }

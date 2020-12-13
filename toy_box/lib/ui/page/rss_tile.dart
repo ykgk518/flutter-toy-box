@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:toy_box/model/entity/rss_item.dart';
 
 class RssTile extends StatelessWidget {
+  RssTile({
+    @required this.rssItem,
+  });
+
+  final RssItem rssItem;
+
   @override
   Widget build(BuildContext context) {
     final mediaSize = MediaQuery.of(context).size;
@@ -26,7 +33,7 @@ class RssTile extends StatelessWidget {
               children: [
                 Container(
                   child: Text(
-                    'タイトルtitle',
+                    rssItem.title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                     textAlign: TextAlign.left,
@@ -38,7 +45,7 @@ class RssTile extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    'コンテンツContentaaaaaaaaaaaaaa',
+                    rssItem.content,
                     overflow: TextOverflow.fade,
                     maxLines: 2,
                     textAlign: TextAlign.left,

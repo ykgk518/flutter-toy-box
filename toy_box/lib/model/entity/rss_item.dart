@@ -10,7 +10,8 @@ abstract class RssItem with _$RssItem {
     @required int id,
     @required int price,
     @required String title,
-    @required String imageUrl,
+    @required String content,
+    @required String imagePath,
   }) = _RssItem;
 
   factory RssItem.fromJson(Map<String, dynamic> json) =>

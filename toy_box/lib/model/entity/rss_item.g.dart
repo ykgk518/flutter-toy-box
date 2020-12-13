@@ -11,7 +11,8 @@ _$_RssItem _$_$_RssItemFromJson(Map<String, dynamic> json) {
     id: json['id'] as int,
     price: json['price'] as int,
     title: json['title'] as String,
-    imageUrl: json['imageUrl'] as String,
+    content: json['content'] as String,
+    imagePath: json['imagePath'] as String,
   );
 }
 
@@ -20,5 +21,6 @@ Map<String, dynamic> _$_$_RssItemToJson(_$_RssItem instance) =>
       'id': instance.id,
       'price': instance.price,
       'title': instance.title,
-      'imageUrl': instance.imageUrl,
+      'content': instance.content,
+      'imagePath': instance.imagePath,
     };
